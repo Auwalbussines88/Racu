@@ -12,188 +12,692 @@
             --darker: #0a0a0a;
             --light: #f5f5f5;
         }
-        /* [Previous CSS remains exactly the same] */
-    </style>
-</head>
-<body>
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="whatsapp-float" target="_blank">
-        <span style="font-size: 2rem;">💬</span>
-    </a>
-
-    <!-- Header with Logo -->
-    <header>
-        <div class="logo">
-            <img src="images/racu-logo.png" alt="Racu International Resources" width="300">
-        </div>
-        <div class="partner-badge">Official MTN Partner 
-            <img src="images/logos/mtn.png" alt="MTN Logo" class="mtn-logo">
-        </div>
-    </header>
-
-    <!-- Laptop Section with Correct Image Paths -->
-    <section id="laptops">
-        <h2 class="section-title">Available Laptops</h2>
-        <div class="laptop-grid">
-            <!-- HP EliteBook -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/hp-elitebook.jpg" alt="HP EliteBook 840 G5" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>HP EliteBook 840 G5</h3>
-                    <ul class="laptop-specs">
-                        <li>Intel Core i5 8th Gen</li>
-                        <li>8GB RAM | 256GB SSD</li>
-                        <li>14" FHD Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=HP%20EliteBook%20840%20G5%20Inquiry" class="btn">Inquire Now</a>
-                </div>
-            </div>
-            
-            <!-- Dell Latitude -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/dell-latitude.jpg" alt="Dell Latitude 5490" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>Dell Latitude 5490</h3>
-                    <ul class="laptop-specs">
-                        <li>Intel Core i7 8th Gen</li>
-                        <li>16GB RAM | 512GB SSD</li>
-                        <li>14" FHD Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=Dell%20Latitude%205490%20Inquiry" class="btn">Inquire Now</a>
-                </div>
-            </div>
-            
-            <!-- MacBook Pro -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/macbook-pro.jpg" alt="MacBook Pro 13-inch" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>MacBook Pro 13" 2020</h3>
-                    <ul class="laptop-specs">
-                        <li>Apple M1 Chip</li>
-                        <li>8GB RAM | 256GB SSD</li>
-                        <li>Retina Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=MacBook%20Pro%202020%20Inquiry" class="btn">Inquire Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- [Rest of your HTML remains the same] -->
-
-    <script>
-        // Image Load Error Fallback
-        document.querySelectorAll('img').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-                console.error(`Image failed to load: ${this.src}`);
-            };
-        });
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Racu International Resources Nigeria Ltd | MTN Partner</title>
-    <style>
-        :root {
-            --primary: #FF6B00; /* MTN Orange */
-            --secondary: #FFD700;
-            --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #f5f5f5;
+        html {
+            scroll-behavior: smooth;
         }
-        /* [Previous CSS remains exactly the same] */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark);
+            color: var(--light);
+            position: relative;
+        }
+        header {
+            background: linear-gradient(to right, var(--darker), var(--primary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--secondary);
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .partner-badge {
+            background: var(--secondary);
+            color: black;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .mtn-logo {
+            height: 40px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        nav {
+            background: var(--darker);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        footer {
+            background: var(--darker);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--primary);
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            border-radius: 8px;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #e05a00;
+            transform: translateY(-2px);
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            margin-left: 1rem;
+        }
+        .btn-whatsapp:hover {
+            background: #1da851;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .service-card {
+            background: var(--darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        .order-form {
+            background: var(--darker);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #222;
+            color: var(--light);
+            font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .mtn-banner {
+            background: var(--darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--primary);
+        }
+        .mtn-banner img {
+            height: 60px;
+            margin-right: 1.5rem;
+        }
+        .mtn-banner-content {
+            flex: 1;
+        }
+        .laptop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .laptop-card {
+            background: var(--darker);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .laptop-card:hover {
+            transform: translateY(-5px);
+        }
+        .laptop-image {
+            height: 200px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        .laptop-details {
+            padding: 1.5rem;
+        }
+        .laptop-details h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .laptop-specs {
+            margin: 1rem 0;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        .laptop-specs li {
+            margin-bottom: 0.5rem;
+        }
+        .price-section {
+            margin-top: 3rem;
+            background: var(--darker);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .price-table th, .price-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        .price-table th {
+            color: var(--primary);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1da851;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 0.5rem auto 0;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .benefit-card {
+            background: var(--darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .benefit-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        /* Right Side Navigation */
+        .side-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--darker);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid var(--primary);
+            z-index: 90;
+        }
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .side-nav li {
+            margin-bottom: 1rem;
+        }
+        .side-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .side-nav a:hover, .side-nav a.active {
+            color: var(--primary);
+            background: rgba(255,107,0,0.1);
+        }
+        @media (max-width: 1024px) {
+            .side-nav {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            nav ul li {
+                margin: 0 0.8rem;
+            }
+            .mtn-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .mtn-banner img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Float -->
     <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="whatsapp-float" target="_blank">
         <span style="font-size: 2rem;">💬</span>
     </a>
 
-    <!-- Header with Logo -->
+    <!-- Right Side Navigation -->
+    <div class="side-nav">
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#laptops">Laptops</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#order">Order Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
     <header>
-        <div class="logo">
-            <img src="images/racu-logo.png" alt="Racu International Resources" width="300">
-        </div>
+        <div class="logo">RACU INTERNATIONAL RESOURCES</div>
+        <div class="tagline">Nigeria Ltd</div>
         <div class="partner-badge">Official MTN Partner 
-            <img src="images/logos/mtn.png" alt="MTN Logo" class="mtn-logo">
+            <img src="https://www.mtn.com/wp-content/themes/mtn-theme/assets/img/logo.svg" alt="MTN Logo" class="mtn-logo">
         </div>
     </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#laptops">Laptops</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#order">Order Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Your Trusted Telecom & Tech Solutions Provider</h2>
+                <p>Specializing in SIM registration, biometric updates, and laptop exports across Nigeria</p>
+                <div style="margin-top: 2rem;">
+                    <a href="#order" class="btn">Place Your Order</a>
+                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="btn btn-whatsapp" target="_blank">Chat on WhatsApp</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- Laptop Section with Correct Image Paths -->
-    <section id="laptops">
-        <h2 class="section-title">Available Laptops</h2>
-        <div class="laptop-grid">
-            <!-- HP EliteBook -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/hp-elitebook.jpg" alt="HP EliteBook 840 G5" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>HP EliteBook 840 G5</h3>
-                    <ul class="laptop-specs">
-                        <li>Intel Core i5 8th Gen</li>
-                        <li>8GB RAM | 256GB SSD</li>
-                        <li>14" FHD Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=HP%20EliteBook%20840%20G5%20Inquiry" class="btn">Inquire Now</a>
-                </div>
-            </div>
-            
-            <!-- Dell Latitude -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/dell-latitude.jpg" alt="Dell Latitude 5490" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>Dell Latitude 5490</h3>
-                    <ul class="laptop-specs">
-                        <li>Intel Core i7 8th Gen</li>
-                        <li>16GB RAM | 512GB SSD</li>
-                        <li>14" FHD Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=Dell%20Latitude%205490%20Inquiry" class="btn">Inquire Now</a>
-                </div>
-            </div>
-            
-            <!-- MacBook Pro -->
-            <div class="laptop-card">
-                <div class="laptop-image">
-                    <img src="images/laptops/macbook-pro.jpg" alt="MacBook Pro 13-inch" loading="lazy">
-                </div>
-                <div class="laptop-details">
-                    <h3>MacBook Pro 13" 2020</h3>
-                    <ul class="laptop-specs">
-                        <li>Apple M1 Chip</li>
-                        <li>8GB RAM | 256GB SSD</li>
-                        <li>Retina Display</li>
-                    </ul>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=MacBook%20Pro%202020%20Inquiry" class="btn">Inquire Now</a>
-                </div>
+        <div class="mtn-banner">
+            <img src="https://www.mtn.com/wp-content/themes/mtn-theme/assets/img/logo.svg" alt="MTN Logo">
+            <div class="mtn-banner-content">
+                <h3>Official MTN Partner</h3>
+                <p>Racu International Resources is proud to be an authorized partner of MTN Nigeria, providing reliable SIM registration and related services with full compliance to NCC regulations.</p>
             </div>
         </div>
-    </section>
-
-    <!-- [Rest of your HTML remains the same] -->
+        
+        <section id="services">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>SIM Registration</h3>
+                    <p>Fast and compliant SIM card registration services for all Nigerian networks including MTN with immediate activation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🖥️</div>
+                    <h3>Laptop Export</h3>
+                    <p>High-quality laptops sourced directly from manufacturers with warranty support and after-sales service.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>SIM Biometric Update</h3>
+                    <p>Secure biometric updates for your existing SIM cards as per NCC regulations with instant verification.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>SIM Import/Export</h3>
+                    <p>Bulk SIM card solutions for businesses and individuals with activation support and volume discounts.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="laptops">
+            <h2 class="section-title">Available Laptops</h2>
+            <div class="laptop-grid">
+                <div class="laptop-card">
+                    <div class="laptop-image" style="background: #1a1a1a;">
+                        [HP EliteBook Image]
+                    </div>
+                    <div class="laptop-details">
+                        <h3>HP EliteBook 840 G5</h3>
+                        <ul class="laptop-specs">
+                            <li>Intel Core i5 8th Gen</li>
+                            <li>8GB RAM | 256GB SSD</li>
+                            <li>14" FHD Display</li>
+                            <li>Windows 10 Pro</li>
+                            <li>Backlit Keyboard</li>
+                        </ul>
+                        <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=I'm%20interested%20in%20HP%20EliteBook%20840%20G5" class="btn" target="_blank">Inquire Now</a>
+                    </div>
+                </div>
+                
+                <div class="laptop-card">
+                    <div class="laptop-image" style="background: #1a1a1a;">
+                        [Dell Latitude Image]
+                    </div>
+                    <div class="laptop-details">
+                        <h3>Dell Latitude 5490</h3>
+                        <ul class="laptop-specs">
+                            <li>Intel Core i7 8th Gen</li>
+                            <li>16GB RAM | 512GB SSD</li>
+                            <li>14" FHD Display</li>
+                            <li>Windows 11 Pro</li>
+                            <li>Fingerprint Reader</li>
+                        </ul>
+                        <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=I'm%20interested%20in%20Dell%20Latitude%205490" class="btn" target="_blank">Inquire Now</a>
+                    </div>
+                </div>
+                
+                <div class="laptop-card">
+                    <div class="laptop-image" style="background: #1a1a1a;">
+                        [MacBook Pro Image]
+                    </div>
+                    <div class="laptop-details">
+                        <h3>MacBook Pro 13" 2020</h3>
+                        <ul class="laptop-specs">
+                            <li>Apple M1 Chip</li>
+                            <li>8GB RAM | 256GB SSD</li>
+                            <li>Retina Display</li>
+                            <li>macOS Monterey</li>
+                            <li>Touch Bar</li>
+                        </ul>
+                        <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=I'm%20interested%20in%20MacBook%20Pro%2013%22%202020" class="btn" target="_blank">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="order" class="order-form">
+            <h2 class="section-title">Order SIM Cards or Laptops</h2>
+            <form id="orderForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Select Service</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Choose a service --</option>
+                        <option value="sim-registration">SIM Registration</option>
+                        <option value="sim-biometric">SIM Biometric Update</option>
+                        <option value="sim-export">SIM Export (Bulk)</option>
+                        <option value="laptop-export">Laptop Export</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity">Quantity (if applicable)</label>
+                    <input type="number" id="quantity" name="quantity" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Delivery Location (State)</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Submit Order</button>
+                <p style="margin-top: 1rem; text-align: center;">OR <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" style="color: var(--primary);">Chat with us on WhatsApp for immediate response</a></p>
+            </form>
+        </section>
+        
+        <section class="price-section">
+            <h2 class="section-title">Our Price List</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SIM Registration</td>
+                        <td>New MTN SIM with full registration</td>
+                        <td>₦1,500</td>
+                    </tr>
+                    <tr>
+                        <td>SIM Biometric Update</td>
+                        <td> compliant biometric update</td>
+                        <td>₦20,000</td>
+                    </tr>
+                    <tr>
+                        <td>Bulk SIM Export</td>
+                        <td>Minimum 50 pieces</td>
+                        <td>Contact for pricing</td>
+                    </tr>
+                    <tr>
+                        <td>HP EliteBook 840 G5</td>
+                        <td>Core i5/8GB/256GB SSD</td>
+                        <td>₦280,000</td>
+                    </tr>
+                    <tr>
+                        <td>Dell Latitude 5490</td>
+                        <td>Core i7/16GB/512GB SSD</td>
+                        <td>₦320,000</td>
+                    </tr>
+                    <tr>
+                        <td>MacBook Pro 13" 2020</td>
+                        <td>M1 Chip/8GB/256GB SSD</td>
+                        <td>₦450,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Office Address</h3>
+                    <p>BLOCK B16 HAMDAM PLAZA,<br>HAMMARUWA WAY,<br>OPPOSITE UNITY BANK,<br>JALINGO, TARABA STATE</p>
+                </div>
+                <div class="service-card">
+                    <h3>Phone</h3>
+                    <p>+234 706 262 4044</p>
+                    <p>Monday - Friday: 8:30AM - 5:30PM</p>
+                </div>
+                <div class="service-card">
+                    <h3>Email</h3>
+                    <p>racuinternationalresources@gmail.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Racu International Resources Nigeria Ltd. All rights reserved.</p>
+        <p>Official Partner of MTN Nigeria | NCC Approved Services</p>
+    </footer>
 
     <script>
-        // Image Load Error Fallback
-        document.querySelectorAll('img').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'none';
-                console.error(`Image failed to load: ${this.src}`);
-            };
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your order! We will contact you shortly to confirm details.');
+            this.reset();
         });
+        
+        // Highlight current section in side navigation
+        const sections = document.querySelectorAll('section');
+        const sideNavItems = document.querySelectorAll('.side-nav a');
+        
+        function updateActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sideNavItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Smooth scroll for side nav links
+        document.querySelectorAll('.side-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
     </script>
 </body>
-</html>
+<html>
