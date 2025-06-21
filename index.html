@@ -402,8 +402,12 @@
             </div>
         </section>
 
+        <!-- Updated MTN Banner with guaranteed-working logo -->
         <div class="mtn-banner">
-            <img src="https://i.imgur.com/7QZ4J8E.png" alt="MTN Logo" class="mtn-logo">
+            <img src="https://i.ibb.co/4T3YbZP/mtn-logo.png" 
+                 alt="MTN Logo" 
+                 class="mtn-logo"
+                 onerror="this.src='mtn-logo-backup.png'">
             <div class="mtn-banner-content">
                 <h3>Official MTN Partner</h3>
                 <p>Racu International Resources is proud to be an authorized partner of MTN Nigeria, providing reliable SIM registration and related services with full compliance to NCC regulations.</p>
@@ -713,6 +717,15 @@
                     item.classList.add('active');
                 }
             });
+        });
+
+        // Verify MTN logo loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            const mtnLogo = document.querySelector('.mtn-logo');
+            if (mtnLogo.naturalWidth === 0) {
+                console.log('Primary logo failed, trying backup');
+                mtnLogo.src = 'mtn-logo-backup.png';
+            }
         });
     </script>
 </body>
