@@ -12,9 +12,6 @@
             --darker: #0a0a0a;
             --light: #f5f5f5;
         }
-        html {
-            scroll-behavior: smooth;
-        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -22,7 +19,7 @@
             padding: 0;
             background-color: var(--dark);
             color: var(--light);
-            position: relative;
+            scroll-behavior: smooth;
         }
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
@@ -50,42 +47,53 @@
             font-size: 0.9rem;
             margin-top: 0.5rem;
         }
-        .mtn-logo {
-            height: 40px;
-            margin-left: 10px;
-            vertical-align: middle;
+        .company-logo {
+            height: 80px;
+            margin-bottom: 1rem;
         }
-        nav {
-            background: var(--darker);
+        .side-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 10, 10, 0.8);
             padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border-radius: 8px;
+            z-index: 90;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--primary);
         }
-        nav ul {
+        .side-nav ul {
             list-style: none;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin: 0;
         }
-        nav ul li {
-            margin: 0 1.5rem;
+        .side-nav li {
+            margin: 1rem 0;
         }
-        nav ul li a {
+        .side-nav a {
             color: var(--light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
         }
-        nav ul li a:hover {
+        .side-nav a:hover, .side-nav a.active {
             color: var(--primary);
+            background: rgba(255, 107, 0, 0.1);
+            transform: translateX(-5px);
+        }
+        .side-nav-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
         }
         main {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
         footer {
             background: var(--darker);
@@ -241,12 +249,16 @@
         }
         .laptop-image {
             height: 200px;
-            background: #333;
+            background: #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 1.2rem;
+            overflow: hidden;
+        }
+        .laptop-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .laptop-details {
             padding: 1.5rem;
@@ -332,41 +344,6 @@
             color: var(--primary);
             margin-top: 0;
         }
-        /* Right Side Navigation */
-        .side-nav {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--darker);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 1px solid var(--primary);
-            z-index: 90;
-        }
-        .side-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .side-nav li {
-            margin-bottom: 1rem;
-        }
-        .side-nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            display: block;
-            padding: 0.5rem;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-        .side-nav a:hover, .side-nav a.active {
-            color: var(--primary);
-            background: rgba(255,107,0,0.1);
-        }
         @media (max-width: 1024px) {
             .side-nav {
                 display: none;
@@ -376,9 +353,6 @@
             .form-row {
                 flex-direction: column;
                 gap: 0;
-            }
-            nav ul li {
-                margin: 0 0.8rem;
             }
             .mtn-banner {
                 flex-direction: column;
@@ -397,33 +371,22 @@
     </a>
 
     <!-- Right Side Navigation -->
-    <div class="side-nav">
+    <nav class="side-nav">
         <ul>
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#laptops">Laptops</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#order">Order Now</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
-    <header>
-        <div class="logo">RACU INTERNATIONAL RESOURCES</div>
-        <div class="tagline">Nigeria Ltd</div>
-        <div class="partner-badge">Official MTN Partner 
-            <img src="https://www.mtn.com/wp-content/themes/mtn-theme/assets/img/logo.svg" alt="MTN Logo" class="mtn-logo">
-        </div>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#laptops">Laptops</a></li>
-            <li><a href="#services">Our Services</a></li>
-            <li><a href="#order">Order Now</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home"><span class="side-nav-icon">🏠</span> Home</a></li>
+            <li><a href="#laptops"><span class="side-nav-icon">💻</span> Laptops</a></li>
+            <li><a href="#services"><span class="side-nav-icon">🔧</span> Services</a></li>
+            <li><a href="#order"><span class="side-nav-icon">🛒</span> Order Now</a></li>
+            <li><a href="#contact"><span class="side-nav-icon">📞</span> Contact</a></li>
         </ul>
     </nav>
+
+    <header>
+        <img src="racu-logo.png" alt="Racu International Logo" class="company-logo">
+        <div class="logo">RACU INTERNATIONAL RESOURCES</div>
+        <div class="tagline">Nigeria Ltd</div>
+        <div class="partner-badge">Official MTN Partner</div>
+    </header>
     
     <main>
         <section id="home" class="hero">
@@ -475,8 +438,8 @@
             <h2 class="section-title">Available Laptops</h2>
             <div class="laptop-grid">
                 <div class="laptop-card">
-                    <div class="laptop-image" style="background: #1a1a1a;">
-                        [HP EliteBook Image]
+                    <div class="laptop-image">
+                        <img src="hp-elitebook.jpg" alt="HP EliteBook 840 G5">
                     </div>
                     <div class="laptop-details">
                         <h3>HP EliteBook 840 G5</h3>
@@ -492,8 +455,8 @@
                 </div>
                 
                 <div class="laptop-card">
-                    <div class="laptop-image" style="background: #1a1a1a;">
-                        [Dell Latitude Image]
+                    <div class="laptop-image">
+                        <img src="dell-latitude.jpg" alt="Dell Latitude 5490">
                     </div>
                     <div class="laptop-details">
                         <h3>Dell Latitude 5490</h3>
@@ -509,8 +472,8 @@
                 </div>
                 
                 <div class="laptop-card">
-                    <div class="laptop-image" style="background: #1a1a1a;">
-                        [MacBook Pro Image]
+                    <div class="laptop-image">
+                        <img src="macbook-pro.jpg" alt="MacBook Pro 13-inch">
                     </div>
                     <div class="laptop-details">
                         <h3>MacBook Pro 13" 2020</h3>
@@ -522,6 +485,23 @@
                             <li>Touch Bar</li>
                         </ul>
                         <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=I'm%20interested%20in%20MacBook%20Pro%2013%22%202020" class="btn" target="_blank">Inquire Now</a>
+                    </div>
+                </div>
+                
+                <div class="laptop-card">
+                    <div class="laptop-image">
+                        <img src="lenovo-thinkpad.jpg" alt="Lenovo ThinkPad T480">
+                    </div>
+                    <div class="laptop-details">
+                        <h3>Lenovo ThinkPad T480</h3>
+                        <ul class="laptop-specs">
+                            <li>Intel Core i5 8th Gen</li>
+                            <li>8GB RAM | 500GB HDD</li>
+                            <li>14" HD Display</li>
+                            <li>Windows 10 Pro</li>
+                            <li>Military Grade Durability</li>
+                        </ul>
+                        <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1?text=I'm%20interested%20in%20Lenovo%20ThinkPad%20T480" class="btn" target="_blank">Inquire Now</a>
                     </div>
                 </div>
             </div>
@@ -596,8 +576,8 @@
                     </tr>
                     <tr>
                         <td>SIM Biometric Update</td>
-                        <td> compliant biometric update</td>
-                        <td>₦20,000</td>
+                        <td>NCC compliant biometric update</td>
+                        <td>₦1,000</td>
                     </tr>
                     <tr>
                         <td>Bulk SIM Export</td>
@@ -618,6 +598,11 @@
                         <td>MacBook Pro 13" 2020</td>
                         <td>M1 Chip/8GB/256GB SSD</td>
                         <td>₦450,000</td>
+                    </tr>
+                    <tr>
+                        <td>Lenovo ThinkPad T480</td>
+                        <td>Core i5/8GB/500GB HDD</td>
+                        <td>₦250,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -650,17 +635,28 @@
     </footer>
 
     <script>
+        // Form submission
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your order! We will contact you shortly to confirm details.');
             this.reset();
         });
         
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
         // Highlight current section in side navigation
         const sections = document.querySelectorAll('section');
         const sideNavItems = document.querySelectorAll('.side-nav a');
         
-        function updateActiveNav() {
+        window.addEventListener('scroll', function() {
             let current = '';
             
             sections.forEach(section => {
@@ -674,30 +670,11 @@
             
             sideNavItems.forEach(item => {
                 item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
+                if (item.getAttribute('href').includes(current)) {
                     item.classList.add('active');
                 }
             });
-        }
-        
-        // Smooth scroll for side nav links
-        document.querySelectorAll('.side-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
-        
-        window.addEventListener('scroll', updateActiveNav);
-        window.addEventListener('load', updateActiveNav);
     </script>
 </body>
-<html>
+</html>
