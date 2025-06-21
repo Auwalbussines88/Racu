@@ -19,7 +19,7 @@
             padding: 0;
             background-color: var(--dark);
             color: var(--light);
-            scroll-behavior: smooth;
+            /* Removed scroll-behavior: smooth; from here to stop general "shaking" */
         }
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
@@ -372,7 +372,6 @@
         <span style="font-size: 2rem;">💬</span>
     </a>
 
-    <!-- Right Side Navigation -->
     <nav class="side-nav">
         <ul>
             <li><a href="#home"><span class="side-nav-icon">🏠</span> Home</a></li>
@@ -402,7 +401,6 @@
             </div>
         </section>
 
-        <!-- Updated MTN Banner with guaranteed-working logo -->
         <div class="mtn-banner">
             <img src="https://i.ibb.co/4T3YbZP/mtn-logo.png" 
                  alt="MTN Logo" 
@@ -515,7 +513,7 @@
         
         <section id="order" class="order-form">
             <h2 class="section-title">Order SIM Cards or Laptops</h2>
-            <form id="orderForm" action="https://formspree.io/f/xqkrnqkj" method="POST">
+            <form id="orderForm" action="https://formspree.io/f/xkgbvpba" method="POST">
                 <input type="hidden" name="_subject" value="New Order from Racu Website">
                 
                 <div class="form-row">
@@ -588,7 +586,7 @@
                     <tr>
                         <td>SIM Biometric Update</td>
                         <td>NCC compliant biometric update</td>
-                        <td>₦1,000</td>
+                        <td>₦20,000</td>
                     </tr>
                     <tr>
                         <td>Bulk SIM Export</td>
@@ -706,7 +704,8 @@
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
                 
-                if (window.scrollY >= (sectionTop - 300)) {
+                // Adjusted offset for side-nav (you might need to fine-tune this)
+                if (window.scrollY >= (sectionTop - 300)) { 
                     current = section.getAttribute('id');
                 }
             });
@@ -722,9 +721,12 @@
         // Verify MTN logo loaded successfully
         document.addEventListener('DOMContentLoaded', function() {
             const mtnLogo = document.querySelector('.mtn-logo');
-            if (mtnLogo.naturalWidth === 0) {
-                console.log('Primary logo failed, trying backup');
-                mtnLogo.src = 'mtn-logo-backup.png';
+            // Check if naturalWidth is 0 (image didn't load) or if it's broken
+            // A common issue with remote images is CORS, but for a public logo, it's usually less common.
+            // Still, checking for naturalWidth is a good fallback.
+            if (!mtnLogo.complete || mtnLogo.naturalWidth === 0) {
+                console.log('Primary MTN logo failed to load, trying backup.');
+                mtnLogo.src = 'mtn-logo-backup.png'; // Make sure you have this file in your root folder
             }
         });
     </script>
