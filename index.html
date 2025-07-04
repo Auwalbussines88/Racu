@@ -19,8 +19,7 @@
             padding: 0;
             background-color: var(--dark);
             color: var(--light);
-            /* Ensure smooth scroll is removed or handled elsewhere if desired */
-            /* The issue of "rawaya" often comes from scroll-behavior: smooth on body, or background-attachment issues */
+            /* An cire 'scroll-behavior: smooth' daga nan don hana rawa */
         }
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
@@ -28,6 +27,8 @@
             padding: 2rem 0;
             text-align: center;
             border-bottom: 3px solid var(--secondary);
+            position: relative; /* Wajibi don z-index yayi aiki */
+            z-index: 10;
         }
         .logo {
             font-size: 2.5rem;
@@ -95,6 +96,8 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            z-index: 5; /* Main content ya fito sama da background */
+            background-color: var(--dark); /* Bada launi don ya rufe abin da ke kasa */
         }
         footer {
             background: var(--darker);
@@ -103,26 +106,43 @@
             padding: 2rem 0;
             margin-top: 3rem;
             border-top: 1px solid var(--primary);
+            position: relative;
+            z-index: 5;
         }
-        .hero {
+        
+        /* === GYARA MAI MUHIMMANCI A NAN === */
+        .hero-background {
+            position: fixed; /* Wannan zai sa hoton ya tsaya cak a baya */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
             background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
             background-size: cover;
-            background-attachment: fixed; /* Keep this for hero background to be fixed */
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            border-radius: 8px;
-            position: relative;
+            z-index: -1; /* Yana komawa bayan komai */
         }
-        .hero::before {
+        .hero-background::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(18, 18, 18, 0.85); /* An kara duhun baya don rubutu ya fito */
+        }
+        .hero {
+            background: transparent; /* An cire hoton baya an mayar dashi sama */
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
             border-radius: 8px;
+            position: relative;
+        }
+        /* ==================================== */
+
+        .hero::before {
+            /* An cire wannan saboda an riga an sa a .hero-background::before */
+            content: none;
         }
         .hero-content {
             position: relative;
@@ -145,31 +165,27 @@
             padding: 2rem; /* Adjusted padding */
             text-align: center;
             border-radius: 8px;
-            margin-top: 3rem; /* Add margin-top to separate from header */
+            margin-top: 3rem;
             margin-bottom: 3rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border: 1px solid var(--primary);
-            display: flex; /* Use flexbox for centering */
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            min-height: 100px; /* Give it a decent minimum height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
         }
-
         #typing-banner h1#typing-effect {
-            font-size: 2.5rem; /* Adjusted font size for better fit */
+            font-size: 2.5rem;
             font-weight: bold;
             color: var(--secondary);
-            min-height: 3rem; /* Ensure consistent height to prevent jump */
-            display: inline-block; /* Still useful for cursor alignment */
-            border-right: .15em solid var(--primary); /* Typing cursor effect */
-            animation: 
-                blink-caret .75s step-end infinite;
-            max-width: 90%; /* Limit width to prevent overflow */
-            word-wrap: break-word; /* Allow long words to break */
-            line-height: 1.2; /* Adjust line height if text wraps */
+            min-height: 3rem;
+            display: inline-block;
+            border-right: .15em solid var(--primary);
+            animation: blink-caret .75s step-end infinite;
+            max-width: 90%;
+            word-wrap: break-word;
+            line-height: 1.2;
         }
-
-        /* Keyframes for the blinking cursor */
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: var(--primary); }
@@ -409,12 +425,18 @@
                 margin-bottom: 1rem;
             }
             #typing-banner h1#typing-effect {
-                font-size: 1.8rem; /* Further adjust font size for smaller screens */
+                font-size: 1.8rem;
+            }
+            main {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
+
+    <div class="hero-background"></div>
+
     <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="whatsapp-float" target="_blank">
         <span style="font-size: 2rem;">💬</span>
     </a>
@@ -610,7 +632,7 @@
                     <textarea id="message" name="message" rows="4"></textarea>
                 </div>
                 
-                <button type="submit" id="submitBtn">
+                <button type="submit" id="submitBtn" class="btn">
                     <span id="submitText">Submit Order</span>
                     <span id="spinner" style="display:none;">Sending...</span>
                 </button>
@@ -636,7 +658,7 @@
                     </tr>
                     <tr>
                         <td>SIM Biometric Update</td>
-                        <td> biometric update</td>
+                        <td>biometric update</td>
                         <td>₦20,000</td>
                     </tr>
                     <tr>
@@ -690,7 +712,7 @@
     </main>
     
     <footer>
-        <p>&copy; 2023 Racu International Resources Nigeria Ltd. All rights reserved.</p>
+        <p>&copy; 2025 Racu International Resources Nigeria Ltd. All rights reserved.</p>
         <p>Official Partner of MTN Nigeria | NCC Approved Services</p>
     </footer>
 
@@ -708,6 +730,7 @@
             // Show loading state
             submitText.style.display = 'none';
             spinner.style.display = 'inline';
+            submitBtn.disabled = true;
             status.textContent = '';
             
             try {
@@ -731,6 +754,7 @@
             } finally {
                 submitText.style.display = 'inline';
                 spinner.style.display = 'none';
+                submitBtn.disabled = false;
             }
         });
 
@@ -738,14 +762,17 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
         // Highlight current section in navigation
-        const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll('section[id]');
         const navItems = document.querySelectorAll('.side-nav a');
         
         window.addEventListener('scroll', function() {
@@ -753,11 +780,7 @@
             
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                // Adjusted offset for side-nav (you might need to fine-tune this)
-                // Using 50% of viewport height as offset for better section detection
-                if (window.scrollY >= (sectionTop - window.innerHeight / 2)) { 
+                if (window.scrollY >= (sectionTop - window.innerHeight / 2)) {
                     current = section.getAttribute('id');
                 }
             });
@@ -768,18 +791,6 @@
                     item.classList.add('active');
                 }
             });
-        });
-
-        // Verify MTN logo loaded successfully
-        document.addEventListener('DOMContentLoaded', function() {
-            const mtnLogo = document.querySelector('.mtn-logo');
-            // Check if naturalWidth is 0 (image didn't load) or if it's broken
-            // A common issue with remote images is CORS, but for a public logo, it's usually less common.
-            // Still, checking for naturalWidth is a good fallback.
-            if (!mtnLogo.complete || mtnLogo.naturalWidth === 0) {
-                console.log('Primary MTN logo failed to load, trying backup.');
-                mtnLogo.src = 'mtn-logo-backup.png'; // Make sure you have this file in your root folder
-            }
         });
 
         // Typing effect script
@@ -794,7 +805,7 @@
                 j++;
                 setTimeout(type, 150);
             } else {
-                setTimeout(erase, 2000); // Wait 2 seconds before erasing
+                setTimeout(erase, 2000);
             }
         }
 
@@ -802,14 +813,14 @@
             if (j > 0) {
                 target.textContent = words[i].substring(0, j - 1);
                 j--;
-                setTimeout(erase, 100); // Erase speed
+                setTimeout(erase, 100);
             } else {
-                i = (i + 1) % words.length; // Move to the next word
-                setTimeout(type, 500); // Wait 0.5 seconds before typing next word
+                i = (i + 1) % words.length;
+                setTimeout(type, 500);
             }
         }
         
-        document.addEventListener("DOMContentLoaded", type); // Start typing when page loads
+        document.addEventListener("DOMContentLoaded", type);
     </script>
 </body>
 </html>
