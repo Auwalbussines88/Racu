@@ -19,24 +19,23 @@
             padding: 0;
             background-color: var(--dark);
             color: var(--light);
-            /* An cire 'scroll-behavior: smooth' daga nan don hana rawa */
         }
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
             color: white;
-            padding: 2rem 0;
+            padding: 1.5rem 0; /* An rage padding kadan */
             text-align: center;
             border-bottom: 3px solid var(--secondary);
-            position: relative; /* Wajibi don z-index yayi aiki */
+            position: relative;
             z-index: 10;
         }
         .logo {
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* An rage girman rubutu */
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* An rage girman rubutu */
             margin-bottom: 0.5rem;
         }
         .partner-badge {
@@ -50,7 +49,8 @@
             margin-top: 0.5rem;
         }
         .company-logo {
-            height: 80px;
+            height: 70px; /* An rage girma kadan */
+            width: auto;
             margin-bottom: 1rem;
         }
         .side-nav {
@@ -96,8 +96,9 @@
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 5; /* Main content ya fito sama da background */
-            background-color: var(--dark); /* Bada launi don ya rufe abin da ke kasa */
+            z-index: 5;
+            background-color: var(--dark);
+            will-change: transform; /* Gyara don lafiyar scrolling */
         }
         footer {
             background: var(--darker);
@@ -110,16 +111,15 @@
             z-index: 5;
         }
         
-        /* === GYARA MAI MUHIMMANCI A NAN === */
         .hero-background {
-            position: fixed; /* Wannan zai sa hoton ya tsaya cak a baya */
+            position: fixed;
             left: 0;
             top: 0;
             width: 100%;
             height: 100vh;
             background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
             background-size: cover;
-            z-index: -1; /* Yana komawa bayan komai */
+            z-index: -1;
         }
         .hero-background::before {
             content: '';
@@ -128,20 +128,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(18, 18, 18, 0.85); /* An kara duhun baya don rubutu ya fito */
+            background: rgba(18, 18, 18, 0.85);
         }
         .hero {
-            background: transparent; /* An cire hoton baya an mayar dashi sama */
+            background: transparent;
             padding: 4rem 2rem;
             text-align: center;
             margin-bottom: 3rem;
             border-radius: 8px;
             position: relative;
         }
-        /* ==================================== */
-
         .hero::before {
-            /* An cire wannan saboda an riga an sa a .hero-background::before */
             content: none;
         }
         .hero-content {
@@ -149,20 +146,19 @@
             z-index: 1;
         }
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* An rage girman rubutu */
             margin-bottom: 1rem;
             color: var(--secondary);
         }
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* An rage girman rubutu */
             margin-bottom: 1.5rem;
             color: #eee;
         }
 
-        /* Styles for the typing banner section */
         #typing-banner {
             background: var(--darker);
-            padding: 2rem; /* Adjusted padding */
+            padding: 2rem;
             text-align: center;
             border-radius: 8px;
             margin-top: 3rem;
@@ -175,7 +171,7 @@
             min-height: 100px;
         }
         #typing-banner h1#typing-effect {
-            font-size: 2.5rem;
+            font-size: 2.2rem; /* An rage girman rubutu */
             font-weight: bold;
             color: var(--secondary);
             min-height: 3rem;
@@ -290,9 +286,6 @@
             margin-right: 15px;
             object-fit: contain;
         }
-        .mtn-banner-content {
-            flex: 1;
-        }
         .laptop-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -316,6 +309,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            aspect-ratio: 16 / 10; /* Gyara don hana karkacewa */
         }
         .laptop-image img {
             width: 100%;
@@ -424,8 +418,10 @@
                 margin-right: 0;
                 margin-bottom: 1rem;
             }
+            .logo { font-size: 1.8rem; }
+            .hero h2 { font-size: 1.8rem; }
             #typing-banner h1#typing-effect {
-                font-size: 1.8rem;
+                font-size: 1.6rem; /* An rage girman rubutu a waya */
             }
             main {
                 padding: 1rem;
@@ -452,7 +448,7 @@
     </nav>
 
     <header>
-        <img src="racu-logo.png" alt="Racu International Logo" class="company-logo">
+        <img src="racu-logo.png" alt="Racu International Logo" class="company-logo" width="150" height="70">
         <div class="logo">RACU INTERNATIONAL RESOURCES</div>
         <div class="tagline">Nigeria Ltd</div>
         <div class="partner-badge">Official MTN Partner</div>
@@ -478,6 +474,7 @@
             <img src="https://i.ibb.co/4T3YbZP/mtn-logo.png" 
                  alt="MTN Logo" 
                  class="mtn-logo"
+                 width="100" height="40"
                  onerror="this.src='mtn-logo-backup.png'">
             <div class="mtn-banner-content">
                 <h3>Official MTN Partner</h3>
@@ -516,7 +513,7 @@
             <div class="laptop-grid">
                 <div class="laptop-card">
                     <div class="laptop-image">
-                        <img src="hp-elitebook.jpg" alt="HP EliteBook 840 G5">
+                        <img src="hp-elitebook.jpg" alt="HP EliteBook 840 G5" width="300" height="200">
                     </div>
                     <div class="laptop-details">
                         <h3>HP EliteBook 840 G5</h3>
@@ -533,7 +530,7 @@
                 
                 <div class="laptop-card">
                     <div class="laptop-image">
-                        <img src="dell-latitude.jpg" alt="Dell Latitude 5490">
+                        <img src="dell-latitude.jpg" alt="Dell Latitude 5490" width="300" height="200">
                     </div>
                     <div class="laptop-details">
                         <h3>Dell Latitude 5490</h3>
@@ -550,7 +547,7 @@
                 
                 <div class="laptop-card">
                     <div class="laptop-image">
-                        <img src="macbook-pro.jpg" alt="MacBook Pro 13-inch">
+                        <img src="macbook-pro.jpg" alt="MacBook Pro 13-inch" width="300" height="200">
                     </div>
                     <div class="laptop-details">
                         <h3>MacBook Pro 13" 2020</h3>
@@ -567,7 +564,7 @@
                 
                 <div class="laptop-card">
                     <div class="laptop-image">
-                        <img src="lenovo-thinkpad.jpg" alt="Lenovo ThinkPad T480">
+                        <img src="lenovo-thinkpad.jpg" alt="Lenovo ThinkPad T480" width="300" height="200">
                     </div>
                     <div class="laptop-details">
                         <h3>Lenovo ThinkPad T480</h3>
@@ -727,7 +724,6 @@
             const spinner = document.getElementById('spinner');
             const status = document.getElementById('formStatus');
             
-            // Show loading state
             submitText.style.display = 'none';
             spinner.style.display = 'inline';
             submitBtn.disabled = true;
