@@ -178,8 +178,24 @@
         .laptop-specs { margin: 1rem 0; color: #bbb; font-size: 0.9rem; }
         .laptop-specs li { margin-bottom: 0.5rem; }
         .price-section { margin-top: 3rem; background: var(--darker); padding: 2rem; border-radius: 8px; }
-        .price-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        .price-table th, .price-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #444; }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            /* GYARA: Tabbatar an nuna column na karshe */
+            table-layout: fixed; /* Wannan yana taimakawa raba space daidai */
+        }
+        .price-table th, .price-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            word-wrap: break-word; /* GYARA: Bada damar rubutu ya tsalle */
+        }
+        .price-table th:last-child,
+        .price-table td:last-child {
+            width: 15%; /* GYARA: Saka faɗi ga column na price don ya fita */
+            text-align: right; /* GYARA: Daidaita farashi zuwa dama */
+        }
         .price-table th { color: var(--primary); }
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px;
@@ -195,7 +211,8 @@
         /* Media Query (Tsarin Wayar Hannu) */
         @media (max-width: 1024px) {
             .side-nav { /* Boye menu na tebur */
-                display: none;
+                right: -280px; /* An gyara, tunda babu "display: none" ba a nan ba */
+                display: block; /* Yi tabbatar an nuna shi don waya */
             }
             .menu-icon {
                 display: block; /* Nuna alamar menu a waya */
@@ -204,7 +221,6 @@
                 /* Canza tsarin menu na gefe ya zama na waya */
                 position: fixed;
                 top: 0;
-                right: -280px; /* Fara daga waje (width na side-nav) */
                 height: 100vh;
                 width: 280px;
                 background: var(--darker);
@@ -231,6 +247,10 @@
             .logo-text-container .logo { font-size: 1.2rem; }
             .logo-text-container .tagline { font-size: 0.8rem; }
             .header-logo { gap: 0.5rem; }
+            .price-table th:last-child,
+            .price-table td:last-child {
+                width: 25%; /* Yi mata faɗi fiye a waya */
+            }
         }
     </style>
 </head>
@@ -459,7 +479,7 @@
         });
 
 
-        // Form submission handler (bai canza ba)
+        // Form submission handler (An gyara don sakon ya bace)
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -472,7 +492,7 @@
             // Show loading state
             submitText.style.display = 'none';
             spinner.style.display = 'inline';
-            status.textContent = '';
+            status.textContent = ''; // Clear previous messages
             
             try {
                 const response = await fetch(form.action, {
@@ -486,12 +506,20 @@
                 if (response.ok) {
                     status.innerHTML = '<p style="color:green;">✓ Thank you! We will contact you shortly.</p>';
                     form.reset();
+                    // GYARA: Saka timer don sakon ya bace bayan 5 seconds
+                    setTimeout(() => {
+                        status.textContent = ''; // Share the message
+                    }, 5000); // 5000 milliseconds = 5 seconds
                 } else {
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
                 status.innerHTML = '<p style="color:red;">⚠️ Error submitting form. Please contact us via WhatsApp.</p>';
                 console.error('Form submission error:', error);
+                // GYARA: Saka timer don sakon kuskure ya bace bayan 10 seconds
+                setTimeout(() => {
+                    status.textContent = ''; // Share the message
+                }, 10000); // 10000 milliseconds = 10 seconds
             } finally {
                 submitText.style.display = 'inline';
                 spinner.style.display = 'none';
@@ -502,7 +530,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Yi amfani da window.innerWidth don tantance girman allo
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
