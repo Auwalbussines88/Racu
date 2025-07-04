@@ -13,26 +13,29 @@
             --light: #f5f5f5;
         }
 
-        /* GYARA 1: Hana karkacewa ta gefe */
+        /* GYARA 1: Hana karkacewa ta gefe da tabbatar babu layin gefe */
         html, body {
-            overflow-x: hidden;
-            scroll-behavior: smooth; /* An dawo da shi domin scrolling ya zama laushi */
+            overflow-x: hidden; /* Muhimmi don hana horizontal scrollbar */
+            scroll-behavior: smooth;
+            margin: 0; /* Tabbatar babu default margin */
+            padding: 0; /* Tabbatar babu default padding */
+            width: 100%; /* Tabbatar ya cika fadin allo */
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             background-color: var(--dark);
             color: var(--light);
+            /* GYARA: Saka overflow-x a body ma don tabbatarwa */
+            overflow-x: hidden; 
         }
 
         /* GYARA 2 & 3: Tsarin Header da Logo da Menu */
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
             color: white;
-            padding: 1rem 2rem; /* Daidaita padding */
+            padding: 1rem 2rem;
             border-bottom: 3px solid var(--secondary);
             position: relative;
             z-index: 1000;
@@ -48,12 +51,12 @@
         }
 
         .company-logo {
-            height: 50px; /* Rage girman logo don ya dace */
+            height: 50px;
             width: auto;
         }
 
         .logo-text-container .logo {
-            font-size: 1.5rem; /* Rage girman rubutun logo */
+            font-size: 1.5rem;
             font-weight: bold;
             margin: 0;
             line-height: 1.2;
@@ -65,7 +68,7 @@
         }
 
         .menu-icon {
-            display: none; /* Boye a kwamfuta */
+            display: none;
             font-size: 2rem;
             cursor: pointer;
             color: white;
@@ -124,11 +127,28 @@
         .hero h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--secondary); }
         .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #eee; }
 
+        /* GYARA: Animating Text */
+        .animated-text {
+            display: inline-block; /* Essential for animation */
+            animation: fadeInOut 8s infinite alternate; /* Canza tsawon animation, direction */
+            font-size: 2.2rem; /* Ya zama kamar hero h2 */
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            font-weight: bold; /* Tabbatar yayi bold */
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
         #typing-banner {
             background: var(--darker); padding: 2rem; text-align: center;
             border-radius: 8px; margin: 3rem auto; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border: 1px solid var(--primary); display: flex; justify-content: center;
-            align-items: center; min-height: 100px; max-width: 1200px; /* Limit width */
+            align-items: center; min-height: 100px; max-width: 1200px;
         }
         #typing-banner h1#typing-effect {
             font-size: 2.2rem; font-weight: bold; color: var(--secondary);
@@ -153,8 +173,6 @@
         .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
         .service-card {
             background: var(--darker); padding: 1.5rem; border-radius: 8px; 
-            /* GYARA: Cire border-left idan shine yake haifar da dogon layi */
-            /* border-left: 4px solid var(--primary); */ 
             box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: transform 0.3s;
         }
         .service-card:hover { transform: translateY(-5px); }
@@ -184,19 +202,18 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 1rem;
-            /* GYARA: Tabbatar an nuna column na karshe */
-            table-layout: fixed; /* Wannan yana taimakawa raba space daidai */
+            table-layout: fixed;
         }
         .price-table th, .price-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid #444;
-            word-wrap: break-word; /* GYARA: Bada damar rubutu ya tsalle */
+            word-wrap: break-word;
         }
         .price-table th:last-child,
         .price-table td:last-child {
-            width: 15%; /* GYARA: Saka faɗi ga column na price don ya fita */
-            text-align: right; /* GYARA: Daidaita farashi zuwa dama */
+            width: 15%;
+            text-align: right;
         }
         .price-table th { color: var(--primary); }
         .whatsapp-float {
@@ -252,6 +269,10 @@
             .price-table td:last-child {
                 width: 25%; 
             }
+            /* GYARA: Rage girman rubutun animation a waya */
+            .animated-text {
+                font-size: 1.8rem; 
+            }
         }
     </style>
 </head>
@@ -290,13 +311,9 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h2>Your Trusted Telecom & Tech Solutions Provider</h2>
+                <h2 class="animated-text">Your Trusted Telecom & Tech Solutions Provider</h2>
                 <p>Specializing in SIM registration, biometric updates, and laptop exports across Nigeria</p>
-                <div style="margin-top: 2rem;">
-                    <a href="#order" class="btn">Place Your Order</a>
-                    <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="btn btn-whatsapp" target="_blank">Chat on WhatsApp</a>
                 </div>
-            </div>
         </section>
 
         <div class="mtn-banner">
@@ -580,7 +597,7 @@
             }
         });
 
-        // Typing effect script
+        // Typing effect script (An barshi kamar yadda yake)
         const words = ["Welcome to RacuTech", "Your One-Stop Tech Solution", "Modern Laptops Available", "All Your MTN Issues Resolved"];
         let i = 0, j = 0;
         const target = document.getElementById('typing-effect');
