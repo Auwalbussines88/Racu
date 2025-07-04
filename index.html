@@ -16,6 +16,7 @@
         /* GYARA 1: Hana karkacewa ta gefe */
         html, body {
             overflow-x: hidden;
+            scroll-behavior: smooth; /* An dawo da shi domin scrolling ya zama laushi */
         }
 
         body {
@@ -127,7 +128,7 @@
             background: var(--darker); padding: 2rem; text-align: center;
             border-radius: 8px; margin: 3rem auto; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border: 1px solid var(--primary); display: flex; justify-content: center;
-            align-items: center; min-height: 100px;
+            align-items: center; min-height: 100px; max-width: 1200px; /* Limit width */
         }
         #typing-banner h1#typing-effect {
             font-size: 2.2rem; font-weight: bold; color: var(--secondary);
@@ -193,6 +194,9 @@
 
         /* Media Query (Tsarin Wayar Hannu) */
         @media (max-width: 1024px) {
+            .side-nav { /* Boye menu na tebur */
+                display: none;
+            }
             .menu-icon {
                 display: block; /* Nuna alamar menu a waya */
             }
@@ -200,15 +204,16 @@
                 /* Canza tsarin menu na gefe ya zama na waya */
                 position: fixed;
                 top: 0;
-                right: -100%; /* Fara daga waje */
+                right: -280px; /* Fara daga waje (width na side-nav) */
                 height: 100vh;
                 width: 280px;
                 background: var(--darker);
-                transform: none;
+                transform: none; /* Cire translateY */
                 flex-direction: column;
                 justify-content: center;
                 transition: right 0.4s ease-in-out;
                 border-left: 2px solid var(--primary);
+                padding-top: 80px; /* Margin from top if header is 80px */
             }
 
             .side-nav.active {
@@ -241,12 +246,11 @@
         <a href="#" class="header-logo" style="text-decoration: none; color: white;">
             <img src="racu-logo.png" alt="Racu International Logo" class="company-logo" width="100" height="50">
             <div class="logo-text-container">
-                <div class="logo">RACU INT'L</div>
-                <div class="tagline">Resources Ltd</div>
+                <div class="logo">RACU INTERNATIONAL RESOURCES</div>
+                <div class="tagline">Nigeria Ltd</div>
             </div>
         </a>
-        <div class="menu-icon" id="menu-toggle">&#8942;</div>
-    </header>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div> </header>
     
     <nav class="side-nav" id="main-nav">
         <ul>
@@ -303,13 +307,130 @@
         </section>
         
         <section id="order" class="order-form">
-             </section>
+            <h2 class="section-title">Order SIM Cards or Laptops</h2>
+            <form id="orderForm" action="https://formspree.io/f/xkgbvpba" method="POST">
+                <input type="hidden" name="_subject" value="New Order from Racu Website">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Select Service</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Choose a service --</option>
+                        <option value="sim-registration">SIM Registration</option>
+                        <option value="sim-biometric">SIM Biometric Update</option>
+                        <option value="sim-export">SIM Export (Bulk)</option>
+                        <option value="laptop-export">Laptop Export</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity">Quantity (if applicable)</label>
+                    <input type="number" id="quantity" name="quantity" min="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Delivery Location (State)</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Notes</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" id="submitBtn">
+                    <span id="submitText">Submit Order</span>
+                    <span id="spinner" style="display:none;">Sending...</span>
+                </button>
+                <div id="formStatus" style="margin-top: 1rem;"></div>
+            </form>
+        </section>
         
         <section class="price-section">
-             </section>
+            <h2 class="section-title">Our Price List</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SIM Registration</td>
+                        <td>New MTN SIM with full registration</td>
+                        <td>₦1,500</td>
+                    </tr>
+                    <tr>
+                        <td>SIM Biometric Update</td>
+                        <td>Update existing SIM biometric data</td>
+                        <td>₦20,000</td>
+                    </tr>
+                    <tr>
+                        <td>Bulk SIM Export</td>
+                        <td>Minimum 50 pieces</td>
+                        <td>Contact for pricing</td>
+                    </tr>
+                    <tr>
+                        <td>HP EliteBook 840 G5</td>
+                        <td>Core i5/8GB/256GB SSD</td>
+                        <td>₦280,000</td>
+                    </tr>
+                    <tr>
+                        <td>Dell Latitude 5490</td>
+                        <td>Core i7/16GB/512GB SSD</td>
+                        <td>₦320,000</td>
+                    </tr>
+                    <tr>
+                        <td>MacBook Pro 13" 2020</td>
+                        <td>M1 Chip/8GB/256GB SSD</td>
+                        <td>₦450,000</td>
+                    </tr>
+                    <tr>
+                        <td>Lenovo ThinkPad T480</td>
+                        <td>Core i5/8GB/500GB HDD</td>
+                        <td>₦250,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
         
         <section id="contact">
-            </section>
+            <h2 class="section-title">Contact Us</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Office Address</h3>
+                    <p>BLOCK B16 HAMDAM PLAZA,<br>HAMMARUWA WAY,<br>OPPOSITE UNITY BANK,<br>JALINGO, TARABA STATE</p>
+                </div>
+                <div class="service-card">
+                    <h3>Phone</h3>
+                    <p>+234 706 262 4044</p>
+                    <p>Monday - Friday: 8:30AM - 5:30PM</p>
+                </div>
+                <div class="service-card">
+                    <h3>Email</h3>
+                    <p>racuinternationalresources@gmail.com</p>
+                    <p>Response within 24 hours</p>
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer>
@@ -323,11 +444,12 @@
         const mainNav = document.getElementById('main-nav');
         const navLinks = mainNav.querySelectorAll('a');
 
+        // Bude/Rufe menu
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
         });
 
-        // Rufe menu idan an danna wani link
+        // Rufe menu idan an danna wani link (don waya)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
@@ -338,21 +460,125 @@
 
 
         // Form submission handler (bai canza ba)
-        document.getElementById('orderForm').addEventListener('submit', async function(e) { /*...*/ });
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const spinner = document.getElementById('spinner');
+            const status = document.getElementById('formStatus');
+            
+            // Show loading state
+            submitText.style.display = 'none';
+            spinner.style.display = 'inline';
+            status.textContent = '';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    status.innerHTML = '<p style="color:green;">✓ Thank you! We will contact you shortly.</p>';
+                    form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                status.innerHTML = '<p style="color:red;">⚠️ Error submitting form. Please contact us via WhatsApp.</p>';
+                console.error('Form submission error:', error);
+            } finally {
+                submitText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
 
-        // Smooth scrolling for navigation (bai canza ba)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => { /*...*/ });
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Yi amfani da window.innerWidth don tantance girman allo
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = document.querySelector('header').offsetHeight; // Samun tsawon header
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - headerOffset; // Cire tsawon header
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
 
-        // Highlight current section in navigation (bai canza ba)
-        // ...
+        // Highlight current section in navigation
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.side-nav a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            const headerHeight = document.querySelector('header').offsetHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerHeight - 20; // Daidaita da tsawon header da ɗan ƙarin
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) { 
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
 
-        // Typing effect script (bai canza ba)
+        // Verify MTN logo loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            const mtnLogo = document.querySelector('.mtn-logo');
+            if (mtnLogo && (!mtnLogo.complete || mtnLogo.naturalWidth === 0)) {
+                console.log('Primary MTN logo failed to load, trying backup.');
+                mtnLogo.src = 'mtn-logo-backup.png';
+            }
+        });
+
+        // Typing effect script
         const words = ["Welcome to RacuTech", "Your One-Stop Tech Solution", "Modern Laptops Available", "All Your MTN Issues Resolved"];
         let i = 0, j = 0;
         const target = document.getElementById('typing-effect');
-        function type() { if (j < words[i].length) { target.textContent += words[i].charAt(j); j++; setTimeout(type, 150); } else { setTimeout(erase, 2000); } }
-        function erase() { if (j > 0) { target.textContent = words[i].substring(0, j - 1); j--; setTimeout(erase, 100); } else { i = (i + 1) % words.length; setTimeout(type, 500); } }
-        document.addEventListener("DOMContentLoaded", type);
+        
+        function type() { 
+            if (j < words[i].length) { 
+                target.textContent += words[i].charAt(j); 
+                j++; 
+                setTimeout(type, 150); 
+            } else { 
+                setTimeout(erase, 2000); 
+            } 
+        }
+        
+        function erase() { 
+            if (j > 0) { 
+                target.textContent = words[i].substring(0, j - 1); 
+                j--; 
+                setTimeout(erase, 100); 
+            } else { 
+                i = (i + 1) % words.length; 
+                setTimeout(type, 500); 
+            } 
+        }
+        
+        document.addEventListener("DOMContentLoaded", type); // Tabbatar an kira aikin type
     </script>
 </body>
 </html>
