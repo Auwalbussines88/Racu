@@ -127,14 +127,14 @@
         .hero h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--secondary); }
         .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #eee; }
 
-        /* GYARA: Animating Text */
+        /* GYARA: Animating Text - Canza launi zuwa --primary */
         .animated-text {
-            display: inline-block; /* Essential for animation */
-            animation: fadeInOut 8s infinite alternate; /* Canza tsawon animation, direction */
-            font-size: 2.2rem; /* Ya zama kamar hero h2 */
+            display: inline-block;
+            animation: fadeInOut 8s infinite alternate;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
-            color: var(--secondary);
-            font-weight: bold; /* Tabbatar yayi bold */
+            color: var(--primary); /* An canza launin daga --secondary zuwa --primary */
+            font-weight: bold;
         }
 
         @keyframes fadeInOut {
