@@ -152,7 +152,9 @@
         .btn-whatsapp:hover { background: #1da851; }
         .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
         .service-card {
-            background: var(--darker); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary);
+            background: var(--darker); padding: 1.5rem; border-radius: 8px; 
+            /* GYARA: Cire border-left idan shine yake haifar da dogon layi */
+            /* border-left: 4px solid var(--primary); */ 
             box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: transform 0.3s;
         }
         .service-card:hover { transform: translateY(-5px); }
@@ -210,30 +212,29 @@
 
         /* Media Query (Tsarin Wayar Hannu) */
         @media (max-width: 1024px) {
-            .side-nav { /* Boye menu na tebur */
-                right: -280px; /* An gyara, tunda babu "display: none" ba a nan ba */
-                display: block; /* Yi tabbatar an nuna shi don waya */
+            .side-nav { 
+                right: -280px; 
+                display: block; 
             }
             .menu-icon {
-                display: block; /* Nuna alamar menu a waya */
+                display: block; 
             }
             .side-nav {
-                /* Canza tsarin menu na gefe ya zama na waya */
                 position: fixed;
                 top: 0;
                 height: 100vh;
                 width: 280px;
                 background: var(--darker);
-                transform: none; /* Cire translateY */
+                transform: none; 
                 flex-direction: column;
                 justify-content: center;
                 transition: right 0.4s ease-in-out;
                 border-left: 2px solid var(--primary);
-                padding-top: 80px; /* Margin from top if header is 80px */
+                padding-top: 80px; 
             }
 
             .side-nav.active {
-                right: 0; /* Kawo shi cikin screen */
+                right: 0; 
             }
         }
         
@@ -249,7 +250,7 @@
             .header-logo { gap: 0.5rem; }
             .price-table th:last-child,
             .price-table td:last-child {
-                width: 25%; /* Yi mata faɗi fiye a waya */
+                width: 25%; 
             }
         }
     </style>
