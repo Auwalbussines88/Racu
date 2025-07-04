@@ -19,7 +19,8 @@
             padding: 0;
             background-color: var(--dark);
             color: var(--light);
-            /* Removed scroll-behavior: smooth; from here to stop general "shaking" */
+            /* Ensure smooth scroll is removed or handled elsewhere if desired */
+            /* The issue of "rawaya" often comes from scroll-behavior: smooth on body, or background-attachment issues */
         }
         header {
             background: linear-gradient(to right, var(--darker), var(--primary));
@@ -106,7 +107,7 @@
         .hero {
             background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
             background-size: cover;
-            **background-attachment: fixed;** /* Gyara anan */
+            background-attachment: fixed; /* Keep this for hero background to be fixed */
             padding: 4rem 2rem;
             text-align: center;
             margin-bottom: 3rem;
@@ -141,25 +142,32 @@
         /* Styles for the typing banner section */
         #typing-banner {
             background: var(--darker);
-            padding: 2.5rem 2rem;
+            padding: 2rem; /* Adjusted padding */
             text-align: center;
             border-radius: 8px;
             margin-bottom: 3rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             border: 1px solid var(--primary);
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100px; /* Give it a decent minimum height */
         }
 
         #typing-banner h1#typing-effect {
-            font-size: 3rem;
+            font-size: 2.5rem; /* Adjusted font size for better fit */
             font-weight: bold;
             color: var(--secondary);
-            min-height: 3.5rem;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: .15em solid var(--primary);
+            min-height: 3rem; /* Ensure consistent height to prevent jump */
+            /* Removed white-space: nowrap; and overflow: hidden; as they can cause text to escape */
+            display: inline-block; /* Still useful for cursor alignment */
+            border-right: .15em solid var(--primary); /* Typing cursor effect */
             animation: 
                 blink-caret .75s step-end infinite;
+            /* Added max-width and word-wrap to handle long text on small screens */
+            max-width: 90%; /* Limit width to prevent overflow */
+            word-wrap: break-word; /* Allow long words to break */
+            line-height: 1.2; /* Adjust line height if text wraps */
         }
 
         /* Keyframes for the blinking cursor */
@@ -402,7 +410,7 @@
                 margin-bottom: 1rem;
             }
             #typing-banner h1#typing-effect {
-                font-size: 2rem; /* Adjust font size for smaller screens */
+                font-size: 1.8rem; /* Further adjust font size for smaller screens */
             }
         }
     </style>
@@ -625,7 +633,7 @@
                     <tr>
                         <td>SIM Registration</td>
                         <td>New MTN SIM with full registration</td>
-                        <td>₦1000</td>
+                        <td>₦1,500</td>
                     </tr>
                     <tr>
                         <td>SIM Biometric Update</td>
@@ -674,7 +682,7 @@
                     <p>Monday - Friday: 8:30AM - 5:30PM</p>
                 </div>
                 <div class="service-card">
-                    <h3>Email</h3>
+                    <h3>Email</p>
                     <p>racuinternationalresources@gmail.com</p>
                     <p>Response within 24 hours</p>
                 </div>
@@ -749,7 +757,8 @@
                 const sectionHeight = section.clientHeight;
                 
                 // Adjusted offset for side-nav (you might need to fine-tune this)
-                if (window.scrollY >= (sectionTop - 300)) { 
+                // Using 50% of viewport height as offset for better section detection
+                if (window.scrollY >= (sectionTop - window.innerHeight / 2)) { 
                     current = section.getAttribute('id');
                 }
             });
