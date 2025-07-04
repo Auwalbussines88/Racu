@@ -126,10 +126,17 @@
             position: relative;
             z-index: 1;
         }
-        .hero h2 {
+        .hero h1#typing-effect { /* Styling for the typing effect text */
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
+            min-height: 3rem; /* To prevent layout shift when text is erased */
+            display: inline-block; /* To allow text-align center to work */
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #eee;
         }
         .btn {
             display: inline-block;
@@ -364,6 +371,9 @@
                 margin-right: 0;
                 margin-bottom: 1rem;
             }
+            .hero h1#typing-effect {
+                font-size: 2rem; /* Adjust font size for smaller screens */
+            }
         }
     </style>
 </head>
@@ -392,8 +402,7 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h2>Your Trusted Telecom & Tech Solutions Provider</h2>
-                <p>Specializing in SIM registration, biometric updates, and laptop exports across Nigeria</p>
+                <h1 id="typing-effect"></h1> <p>Specializing in SIM registration, biometric updates, and laptop exports across Nigeria</p>
                 <div style="margin-top: 2rem;">
                     <a href="#order" class="btn">Place Your Order</a>
                     <a href="https://wa.me/qr/ZKO4YUJQ2HQWE1" class="btn btn-whatsapp" target="_blank">Chat on WhatsApp</a>
@@ -559,7 +568,7 @@
                     <textarea id="message" name="message" rows="4"></textarea>
                 </div>
                 
-                <button type="submit" class="btn" id="submitBtn">
+                <button type="submit" id="submitBtn">
                     <span id="submitText">Submit Order</span>
                     <span id="spinner" style="display:none;">Sending...</span>
                 </button>
@@ -729,6 +738,35 @@
                 mtnLogo.src = 'mtn-logo-backup.png'; // Make sure you have this file in your root folder
             }
         });
+
+        // Typing effect script
+        const words = ["Welcome to RacuTech", "Your One-Stop Tech Solution", "Modern Laptops Available", "All Your MTN Issues Resolved"];
+        let i = 0;
+        let j = 0;
+        const target = document.getElementById('typing-effect');
+
+        function type() {
+            if (j < words[i].length) {
+                target.textContent += words[i].charAt(j);
+                j++;
+                setTimeout(type, 150);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (j > 0) {
+                target.textContent = words[i].substring(0, j - 1);
+                j--;
+                setTimeout(erase, 100);
+            } else {
+                i = (i + 1) % words.length;
+                setTimeout(type, 500);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", type);
     </script>
 </body>
 </html>
