@@ -106,6 +106,7 @@
         .hero {
             background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
             background-size: cover;
+            **background-attachment: fixed;** /* Gyara anan */
             padding: 4rem 2rem;
             text-align: center;
             margin-bottom: 3rem;
@@ -126,7 +127,7 @@
             position: relative;
             z-index: 1;
         }
-        .hero h2 { /* Reverted to h2 for hero section main title */
+        .hero h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
@@ -137,26 +138,26 @@
             color: #eee;
         }
 
-        /* New styles for the typing banner section */
+        /* Styles for the typing banner section */
         #typing-banner {
             background: var(--darker);
-            padding: 2.5rem 2rem; /* More vertical padding */
+            padding: 2.5rem 2rem;
             text-align: center;
             border-radius: 8px;
-            margin-bottom: 3rem; /* Space below the banner */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* Stronger shadow */
-            border: 1px solid var(--primary); /* A subtle border */
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid var(--primary);
         }
 
         #typing-banner h1#typing-effect {
-            font-size: 3rem; /* Larger font size for impact */
+            font-size: 3rem;
             font-weight: bold;
-            color: var(--secondary); /* Highlight color */
-            min-height: 3.5rem; /* Ensure consistent height */
-            display: inline-block; /* Essential for text-align center */
-            white-space: nowrap; /* Prevent text from wrapping during typing */
-            overflow: hidden; /* Hide overflow during typing */
-            border-right: .15em solid var(--primary); /* Typing cursor effect */
+            color: var(--secondary);
+            min-height: 3.5rem;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid var(--primary);
             animation: 
                 blink-caret .75s step-end infinite;
         }
@@ -624,7 +625,7 @@
                     <tr>
                         <td>SIM Registration</td>
                         <td>New MTN SIM with full registration</td>
-                        <td>₦1,500</td>
+                        <td>₦1000</td>
                     </tr>
                     <tr>
                         <td>SIM Biometric Update</td>
